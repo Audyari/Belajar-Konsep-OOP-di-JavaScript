@@ -1,0 +1,22 @@
+Belajar Konsep OOP di JavaScript
+
+======================================
+
+contoh sederhana app.js
+
+// Membuat constructor function
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// Menambahkan metode ke prototipe
+Person.prototype.greet = function() {
+  console.log(`Halo, nama saya ${this.name} dan umur saya ${this.age} tahun.`);
+};
+
+// Membuat objek baru
+const john = new Person('John', 30);
+john.greet(); // Output: Halo, nama saya John dan umur saya 30 tahun.
+
+================================================
