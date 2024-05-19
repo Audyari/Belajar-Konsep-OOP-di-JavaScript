@@ -1,46 +1,65 @@
-Belajar Konsep OOP di JavaScript
+Membuat Object Dengan Factory Function
 
-======================================
-Perkenalan Tentang Prototype Di Javascript
-=================================================
+==========================================
 
-KEYWORD NYA ADALAH "PROTOTYPE"
+Membuat objek dengan Factory Function di JavaScript adalah salah satu cara untuk mencapai konsep Objek-Oriented Programming (OOP)
+tanpa menggunakan konstruktor dan prototype secara langsung.
 
-Prototype yg ada di javascript :
-1.Object.prototype: 
-2.Array.prototype
-3.Function.prototype
-4.String.prototype
-5.Number.prototype:
-6.Boolean.prototype
-7.Date.prototype
-8.RegExp.prototype
-9.Error.prototype
+contoh nya : 
 
-contoh sederhana app.js
-
-// Membuat constructor function
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
+function createPerson(name, age) {
+  return {
+    name: name,
+    age: age,
+    greet: function() {
+      console.log(`Halo, nama saya ${this.name} dan umur saya ${this.age} tahun.`);
+    }
+  };
 }
 
-// Menambahkan metode ke prototipe
-Person.prototype.greet = function() {
-  console.log(`Halo, nama saya ${this.name} dan umur saya ${this.age} tahun.`);
-};
-
-// Membuat objek baru
-const john = new Person('John', 30);
+const john = createPerson('John', 30);
 john.greet(); // Output: Halo, nama saya John dan umur saya 30 tahun.
 
-================================================
+const jane = createPerson('Jane', 25);
+jane.greet(); // Output: Halo, nama saya Jane dan umur saya 25 tahun.
 
-Prototipe di JavaScript adalah sebuah konsep di mana setiap objek di JavaScript memiliki sebuah objek yang disebut dengan prototype.
-Prototype ini berfungsi sebagai template atau blueprint untuk objek tersebut. Setiap objek yang Anda buat akan mewarisi properti dan
-metode dari prototipenya.
+console.dir(jane);
+console.log(jane);
 
-================================
-
+=============================================
 
 
+contoh lain rgb color test : 
+
+class ColorConverter {
+  // Fungsi untuk mengubah RGB ke HEX
+  static rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  }
+
+  // Fungsi untuk mengubah HEX ke RGB
+  static hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        }
+      : null;
+  }
+}
+
+// Contoh penggunaan
+const rgbColor = { r: 255, g: 128, b: 0 };
+const hexColor = ColorConverter.rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b);
+console.log("RGB:", rgbColor);
+console.log("HEX:", hexColor); // Output: HEX: #ff8000
+
+const hexColor2 = "#00ff00";
+const rgbColor2 = ColorConverter.hexToRgb(hexColor2);
+console.log("HEX:", hexColor2);
+console.log("RGB:", rgbColor2); // Output: RGB: { r: 0, g: 255, b: 0 }
+
+
+======================================================================
