@@ -1,8 +1,28 @@
-Contoh Lanjut Object Dengan Class
+Penjelasan Oop, Extend Dan Fungsi Super
 
-=====================================
+==============================================
 
-// Definisikan class untuk objek Kendaraan
+Baik, mari kita bahas lebih dalam tentang Pemrograman Berorientasi Objek (OOP), Extend, dan Fungsi Super di JavaScript.
+
+Pemrograman Berorientasi Objek (OOP):
+OOP adalah paradigma pemrograman di mana kita membuat dan menggunakan objek-objek sebagai dasar untuk membangun aplikasi.
+Objek-objek ini biasanya merepresentasikan entitas atau konsep dalam dunia nyata, seperti Mobil, Orang, atau Buku
+
+
+Beberapa konsep dasar dalam OOP adalah:
+
+1.Class: Blueprint atau template untuk membuat objek.
+2.Objek: Instance dari sebuah class, yang memiliki properti dan metode.
+3.Enkapsulasi: Menyembunyikan detail implementasi dari objek dan hanya mengekspos antarmuka yang diperlukan.
+4.Inheritance: Kemampuan sebuah class untuk mewariskan properti dan metode ke class yang lebih spesifik.
+5.Polymorphisme: Kemampuan objek untuk mengambil bentuk yang berbeda, biasanya diimplementasikan melalui inheritance.
+
+Extend dan Fungsi Super:
+Inheritance dalam OOP memungkinkan kita untuk membuat class baru yang mewarisi properti dan metode dari class yang sudah ada. 
+Ini disebut "extend" atau "subclassing".
+
+Contoh:
+
 class Kendaraan {
   constructor(merek, model, tahun) {
     this.merek = merek;
@@ -10,7 +30,6 @@ class Kendaraan {
     this.tahun = tahun;
   }
 
-  // Method untuk menampilkan informasi kendaraan
   displayInfo() {
     console.log(`Merek: ${this.merek}`);
     console.log(`Model: ${this.model}`);
@@ -18,16 +37,41 @@ class Kendaraan {
   }
 }
 
-// Buat objek Kendaraan
-const mobil = new Kendaraan("Toyota", "Camry", 2020);
-const motor = new Kendaraan("Honda", "Scoopy", 2018);
+class Mobil extends Kendaraan {
+  constructor(merek, model, tahun, jumlahPintu) {
+    super(merek, model, tahun);
+    this.jumlahPintu = jumlahPintu;
+  }
 
-// Panggil method displayInfo() untuk masing-masing objek
-mobil.displayInfo();
-console.log("---");
-motor.displayInfo();
+  displayInfo() {
+    super.displayInfo();
+    console.log(`Jumlah Pintu: ${this.jumlahPintu}`);
+  }
+}
 
-console.log(Kendaraan);
+const mobilku = new Mobil("Toyota", "Camry", 2020, 4);
+mobilku.displayInfo();
 
 
-============================================
+==========================================================
+
+Pada contoh di atas, class Mobil "extends" atau mewarisi class Kendaraan. Ini berarti class Mobil memiliki semua properti dan
+metode yang ada di class Kendaraan.
+
+Fungsi super() digunakan untuk memanggil constructor dari class induk (Kendaraan). Ini memungkinkan class Mobil untuk 
+menambahkan properti baru (jumlahPintu) tanpa harus mengulangi definisi properti yang sudah ada di class Kendaraan.
+
+Selain itu, class Mobil juga dapat menimpa (override) metode displayInfo() yang diwarisi dari class Kendaraan. Dalam hal ini, 
+metode displayInfo() di class Mobil memanggil super.displayInfo() untuk menampilkan informasi yang diwarisi, dan menambahkan 
+informasi tentang jumlah pintu.
+
+Melalui konsep inheritance dan polymorphisme, kita dapat membangun hierarki class yang lebih kompleks dan saling terhubung,
+sehingga dapat mengembangkan aplikasi dengan lebih efisien dan modular.
+
+
+==================================================
+
+
+
+
+
