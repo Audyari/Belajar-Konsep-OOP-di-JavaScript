@@ -1,6 +1,21 @@
 Belajar Konsep OOP di JavaScript
 
 ======================================
+Perkenalan Tentang Prototype Di Javascript
+=================================================
+
+KEYWORD NYA ADALAH "PROTOTYPE"
+
+Prototype yg ada di javascript :
+1.Object.prototype: 
+2.Array.prototype
+3.Function.prototype
+4.String.prototype
+5.Number.prototype:
+6.Boolean.prototype
+7.Date.prototype
+8.RegExp.prototype
+9.Error.prototype
 
 contoh sederhana app.js
 
@@ -20,3 +35,12 @@ const john = new Person('John', 30);
 john.greet(); // Output: Halo, nama saya John dan umur saya 30 tahun.
 
 ================================================
+
+Prototipe di JavaScript adalah sebuah konsep di mana setiap objek di JavaScript memiliki sebuah objek yang disebut dengan prototype.
+Prototype ini berfungsi sebagai template atau blueprint untuk objek tersebut. Setiap objek yang Anda buat akan mewarisi properti dan
+metode dari prototipenya.
+
+================================
+
+
+
