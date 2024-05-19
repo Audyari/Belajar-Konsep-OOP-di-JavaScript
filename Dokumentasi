@@ -1,44 +1,46 @@
-Membuat Object Dengan Factory Function
-
-==========================================
-
-Membuat objek dengan Factory Function di JavaScript adalah salah satu cara untuk mencapai konsep Objek-Oriented Programming (OOP)
-tanpa menggunakan konstruktor dan prototype secara langsung.
-
-contoh nya : 
-
-function createPerson(name, age) {
-  return {
-    name: name,
-    age: age,
-    greet: function() {
-      console.log(`Halo, nama saya ${this.name} dan umur saya ${this.age} tahun.`);
-    }
-  };
-}
-
-const john = createPerson('John', 30);
-john.greet(); // Output: Halo, nama saya John dan umur saya 30 tahun.
-
-const jane = createPerson('Jane', 25);
-jane.greet(); // Output: Halo, nama saya Jane dan umur saya 25 tahun.
-
-console.dir(jane);
-console.log(jane);
+Membuat Object Dengan Constructor Function
 
 =============================================
 
+contoh code : 
 
-contoh lain rgb color test : 
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
 
-class ColorConverter {
-  // Fungsi untuk mengubah RGB ke HEX
-  static rgbToHex(r, g, b) {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  }
+  this.greet = function() {
+    console.log(`Hello, my name is ${this.name} and I'm ${this.age} years old.`);
+  };
+}
 
-  // Fungsi untuk mengubah HEX ke RGB
-  static hexToRgb(hex) {
+const john = new Person('John', 30);
+const jane = new Person('Jane', 25);
+
+console.log(john.name); // Output: 'John'
+console.log(jane.age); // Output: 25
+john.greet(); // Output: 'Hello, my name is John and I'm 30 years old.'
+jane.greet(); // Output: 'Hello, my name is Jane and I'm 25 years old.'
+
+========================================================================
+
+contoh warna rg pake : Constructor Function
+
+
+// Constructor Function
+function ColorConverter() {
+  this.rgbToHex = function(r, g, b) {
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
+
+    if (r.length === 1) r = "0" + r;
+    if (g.length === 1) g = "0" + g;
+    if (b.length === 1) b = "0" + b;
+
+    return "#" + r + g + b;
+  };
+
+  this.hexToRgb = function(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? {
@@ -47,19 +49,13 @@ class ColorConverter {
           b: parseInt(result[3], 16)
         }
       : null;
-  }
+  };
 }
 
-// Contoh penggunaan
-const rgbColor = { r: 255, g: 128, b: 0 };
-const hexColor = ColorConverter.rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b);
-console.log("RGB:", rgbColor);
-console.log("HEX:", hexColor); // Output: HEX: #ff8000
-
-const hexColor2 = "#00ff00";
-const rgbColor2 = ColorConverter.hexToRgb(hexColor2);
-console.log("HEX:", hexColor2);
-console.log("RGB:", rgbColor2); // Output: RGB: { r: 0, g: 255, b: 0 }
+// Penggunaan
+const converter = new ColorConverter();
+console.log(converter.rgbToHex(255, 0, 0)); // "#ff0000"
+console.log(converter.hexToRgb("#00ff00")); // { r: 0, g: 255, b: 0 }
 
 
-======================================================================
+===============================================
