@@ -1,44 +1,38 @@
-Membuat Object Dengan Factory Function
+Membuat Object Dengan Class
 
+==============================
 
-==============================================
+class ColorConverter {
+  rgbToHex(r, g, b) {
+    r = r.toString(16);
+    g = g.toString(16);
+    b = b.toString(16);
 
+    if (r.length === 1) r = "0" + r;
+    if (g.length === 1) g = "0" + g;
+    if (b.length === 1) b = "0" + b;
 
-contoh color hex  : pake Factory Function
+    return "#" + r + g + b;
+  }
 
-===
-
-// Factory Function
-function createColorConverter() {
-  return {
-    rgbToHex: function(r, g, b) {
-      r = r.toString(16);
-      g = g.toString(16);
-      b = b.toString(16);
-
-      if (r.length === 1) r = "0" + r;
-      if (g.length === 1) g = "0" + g;
-      if (b.length === 1) b = "0" + b;
-
-      return "#" + r + g + b;
-    },
-    hexToRgb: function(hex) {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result
-        ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-          }
-        : null;
-    }
-  };
+  hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        }
+      : null;
+  }
 }
 
 // Penggunaan
-const converter = createColorConverter();
+const converter = new ColorConverter();
 console.log(converter.rgbToHex(255, 0, 0)); // "#ff0000"
 console.log(converter.hexToRgb("#00ff00")); // { r: 0, g: 255, b: 0 }
 
+console.log(converter);
 
-==================================================
+
+========================================
