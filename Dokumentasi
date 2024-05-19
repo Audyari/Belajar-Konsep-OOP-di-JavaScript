@@ -1,61 +1,44 @@
-Membuat Object Dengan Constructor Function
-
-=============================================
-
-contoh code : 
-
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-
-  this.greet = function() {
-    console.log(`Hello, my name is ${this.name} and I'm ${this.age} years old.`);
-  };
-}
-
-const john = new Person('John', 30);
-const jane = new Person('Jane', 25);
-
-console.log(john.name); // Output: 'John'
-console.log(jane.age); // Output: 25
-john.greet(); // Output: 'Hello, my name is John and I'm 30 years old.'
-jane.greet(); // Output: 'Hello, my name is Jane and I'm 25 years old.'
-
-========================================================================
-
-contoh warna rg pake : Constructor Function
+Membuat Object Dengan Factory Function
 
 
-// Constructor Function
-function ColorConverter() {
-  this.rgbToHex = function(r, g, b) {
-    r = r.toString(16);
-    g = g.toString(16);
-    b = b.toString(16);
+==============================================
 
-    if (r.length === 1) r = "0" + r;
-    if (g.length === 1) g = "0" + g;
-    if (b.length === 1) b = "0" + b;
 
-    return "#" + r + g + b;
-  };
+contoh color hex  : pake Factory Function
 
-  this.hexToRgb = function(hex) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? {
-          r: parseInt(result[1], 16),
-          g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16)
-        }
-      : null;
+===
+
+// Factory Function
+function createColorConverter() {
+  return {
+    rgbToHex: function(r, g, b) {
+      r = r.toString(16);
+      g = g.toString(16);
+      b = b.toString(16);
+
+      if (r.length === 1) r = "0" + r;
+      if (g.length === 1) g = "0" + g;
+      if (b.length === 1) b = "0" + b;
+
+      return "#" + r + g + b;
+    },
+    hexToRgb: function(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result
+        ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+          }
+        : null;
+    }
   };
 }
 
 // Penggunaan
-const converter = new ColorConverter();
+const converter = createColorConverter();
 console.log(converter.rgbToHex(255, 0, 0)); // "#ff0000"
 console.log(converter.hexToRgb("#00ff00")); // { r: 0, g: 255, b: 0 }
 
 
-===============================================
+==================================================
